@@ -1,0 +1,14 @@
+.scroll-box {
+  width: 200px; /* Adjust width as needed */
+  height: 300px; /* Adjust height as needed */
+  overflow-y: scroll; /* Enable vertical scrolling */
+  border: 1px solid #ccc; /* Optional: adds a border around the scroll box */
+  padding: 5px;
+}
+.character-btn {
+  display: block; /* Make each character fill the width of the scroll box */
+  padding: 10px;
+  margin-bottom: 5px; /* Space out buttons */
+  cursor: pointer;
+  text-align: left;
+}
