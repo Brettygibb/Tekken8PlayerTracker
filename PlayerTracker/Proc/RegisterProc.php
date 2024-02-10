@@ -7,7 +7,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $password = $_POST["password"];
     $email = $_POST["email"];
     $result = saveUserToDatabase($username,$email, $password);
-    header("Location: ../Pages/Login.php?message=Success");
+    if($result === true){
+        header("Location: ../Pages/Login.php");
+        exit();
+    } else {
+        header("Location: ../Pages/Register.php?error=userexists");
+        exit();
+    }
 
 
 }

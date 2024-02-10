@@ -1,14 +1,120 @@
-.scroll-box {
-  width: 200px; /* Adjust width as needed */
-  height: 300px; /* Adjust height as needed */
-  overflow-y: scroll; /* Enable vertical scrolling */
-  border: 1px solid #ccc; /* Optional: adds a border around the scroll box */
-  padding: 5px;
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #121212; /* Dark background for contrast */
+  color: #ffffff; /* Light text for readability */
+  margin: 0;
+  padding: 20px;
 }
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #ffcc00; /* Gold color for links */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  color: #ffcc00; /* Tekken theme gold color */
+}
+
+.scroll-box {
+  background-color: #1e1e1e; /* Slightly lighter dark background for the scroll box */
+  color: #ffffff; /* Ensuring text is readable */
+  border: 2px solid #ffcc00; /* Gold border */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Adding some depth */
+  border-radius: 8px; /* Rounded corners */
+}
+
 .character-btn {
-  display: block; /* Make each character fill the width of the scroll box */
-  padding: 10px;
-  margin-bottom: 5px; /* Space out buttons */
-  cursor: pointer;
-  text-align: left;
+  background-color: #333333; /* Darker button background */
+  color: #ffffff; /* White text */
+  border: 1px solid #ffcc00; /* Gold border */
+  border-radius: 4px; /* Rounded corners for buttons */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+}
+
+.character-btn:hover {
+  background-color: #ffcc00; /* Highlight with gold color on hover */
+  color: #000000; /* Text color change for contrast */
+  transform: scale(1.05); /* Slight increase in size */
+}
+
+/* Custom scrollbar styles */
+.scroll-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-box::-webkit-scrollbar-track {
+  background: #2c2c2c;
+}
+
+.scroll-box::-webkit-scrollbar-thumb {
+  background: #ffcc00; /* Gold scrollbar thumb */
+}
+
+.scroll-box::-webkit-scrollbar-thumb:hover {
+  background: #ffb700; /* Slightly lighter gold on hover */
+}
+
+#characterDetails img {
+  border: 3px solid #ffcc00; /* Gold border around character images */
+  border-radius: 4px; /* Rounded corners for images */
+  margin-top: 10px; /* Space between image and the top content */
+}
+
+button {
+  font-size: 16px; /* Larger font size for readability */
+  padding: 10px 20px; /* Ample padding for a larger clickable area */
+  margin: 5px; /* Space around buttons */
+  background-color: #292929; /* Dark background for button */
+  color: #ffffff; /* White text for contrast */
+  border: none; /* Removing default border */
+  border-radius: 4px; /* Rounded corners */
+  transition: all 0.2s ease; /* Smooth transition for hover effects */
+}
+
+button:hover {
+  background-color: #ffcc00; /* Gold background on hover */
+  color: #000000; /* Black text for contrast */
+}
+.content-container {
+  display: flex;
+  align-items: flex-start; /* Align items at the top */
+  gap: 20px; /* Spacing between the list and the details */
+}
+
+.scroll-box {
+  width: 200px; /* Adjust as needed */
+  height: 300px; /* Adjust as needed */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 5px;
+  flex-shrink: 0; /* Prevent the box from shrinking */
+}
+
+#characterDetails {
+  flex-grow: 1; /* Allow the details section to take up the remaining space */
+  display: flex; /* Use flexbox for internal alignment */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+#characterImage {
+  max-width: 1000px; /* Adjust as needed */
+  max-height: 1000px; /* Adjust as needed */
+  display: block; /* Show the image, adjust this as needed based on JS logic */
+  margin-bottom: 10px; /* Spacing between image and buttons */
 }

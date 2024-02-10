@@ -1,22 +1,34 @@
 <?php
-session_start(); // Start the session at the top
+session_start();
 include "../Includes/Connect.php";
 include "../Includes/Functions.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
     
-    $loginResult = loginUser($email, $password); // Assume loginUser returns true on success, false on failure
+    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+    $password = $_POST["password"]; // Consider using password_hash() and password_verify() for secure password handling
     
-    if ($loginResult === "Success") {
-        // Assuming loginUser sets some session variables on success
+    // Assuming loginUser() verifies user credentials and returns true on success
+    // It's better to fetch the user ID within the loginUser function if authentication is successful
+    $userId = loginUser($email, $password); // Adjust loginUser to return user ID on success, false on failure
+    //GETS USER ID FROM DATABASE
+    $sql = "SELECT id FROM users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $userId = $row['id'];
+    $stmt->close();
+    if ($userId !== false) {
+        // Authentication successful, set user ID in session
+        $_SESSION['user_id'] = $userId;
         header("Location: ../Pages/Profile.php");
-        exit(); // Prevent further script execution after a redirect
+        exit();
     } else {
-        // Handle login failure
-        // For example, redirect back to the login page with a query parameter indicating failure
+        // Authentication failed
         header("Location: ../Pages/Login.php?error=invalidcredentials");
         exit();
     }
 }
+?>

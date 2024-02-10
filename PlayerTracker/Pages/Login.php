@@ -12,6 +12,8 @@ if(isset($_GET["message"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="../css/styles.css">
+
 </head>
 <body>
     <div>
@@ -22,6 +24,10 @@ if(isset($_GET["message"])){
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <input type="submit" value="Login">
-    
+    </form>
+    </div>
+    <div>
+        <a href="Register.php">Register</a>
+    </div>
 </body>
 </html>

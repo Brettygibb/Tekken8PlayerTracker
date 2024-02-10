@@ -14,7 +14,9 @@ function saveUserToDatabase($username, $email, $password) {
         $result->free();
         $stmt->close();
         return "User already exists";
+        header("Location: ../Pages/Register.php?error=userexists");
     }
+    
 
     // Important: Clear results from the first procedure call
     while ($conn->more_results() && $conn->next_result()) {
@@ -48,36 +50,32 @@ function loginUser($email, $password) {
 
     $stmt = $conn->prepare("CALL LoginUser(?)");
     if (!$stmt) {
-        return "Error preparing statement: " . htmlspecialchars($conn->error);
+        return false; // Preparation of statement failed
     }
 
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Correctly use $result to fetch the associative array
-    $user = $result->fetch_assoc();
-
-    if ($user && isset($user["passwordHash"])) {
-        if (password_verify($password, $user["passwordHash"])) {
-            // Start or ensure a session has started
+    if ($user = $result->fetch_assoc()) {
+        if (isset($user["passwordHash"]) && password_verify($password, $user["passwordHash"])) {
+            // Ensure a session has started
             if (session_status() === PHP_SESSION_NONE) {
                 session_start();
             }
     
-            // Set session variables
-            $_SESSION['user_id'] = $user['id']; // Assuming there's an 'id' field
-            $_SESSION['username'] = $user['username']; // Assuming there's a 'username' field
-    
+            // Directly set session variables
+            $_SESSION['user_id'] = $user['id']; // Store user ID in session
+            $_SESSION['username'] = $user['username']; // Store username in session
+
             $stmt->close();
-            return "Success";
-        } else {
-            $stmt->close();
-            return "Invalid password";
+            return true; // Authentication successful
         }
     }
     
-    
+    $stmt->close();
+    return false; // Authentication failed
 }
+
 
 
