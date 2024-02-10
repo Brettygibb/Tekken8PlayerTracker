@@ -11,15 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Assuming loginUser() verifies user credentials and returns true on success
     // It's better to fetch the user ID within the loginUser function if authentication is successful
     $userId = loginUser($email, $password); // Adjust loginUser to return user ID on success, false on failure
-    //GETS USER ID FROM DATABASE
-    $sql = "SELECT id FROM users WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    $userId = $row['id'];
-    $stmt->close();
+    
     if ($userId !== false) {
         // Authentication successful, set user ID in session
         $_SESSION['user_id'] = $userId;
