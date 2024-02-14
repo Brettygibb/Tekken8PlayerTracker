@@ -97,8 +97,8 @@ button:hover {
 }
 
 .scroll-box {
-  width: 200px; /* Adjust as needed */
-  height: 300px; /* Adjust as needed */
+  width: 500px; /* Adjust as needed */
+  height: 5000px; /* Adjust as needed */
   overflow-y: auto;
   border: 1px solid #ccc;
   padding: 5px;
