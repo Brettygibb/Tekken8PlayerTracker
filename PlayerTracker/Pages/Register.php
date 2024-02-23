@@ -1,3 +1,13 @@
+
+<?php
+if(isset($_GET["error"])){
+    if($_GET["error"] == "userexists"){
+        //alert
+        echo "<script>alert('User already exists');</script>";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
