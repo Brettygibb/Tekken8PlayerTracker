@@ -42,8 +42,11 @@ h1 {
   background-color: #333333; /* Darker button background */
   color: #ffffff; /* White text */
   border: 1px solid #ffcc00; /* Gold border */
-  border-radius: 4px; /* Rounded corners for buttons */
+  border-radius: 10px; /* Rounded corners for buttons */
   transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+  font-size: 30px;
+  padding: 25px 40px;
+  margin-left: 20px;
 }
 
 .character-btn:hover {
@@ -70,9 +73,9 @@ h1 {
 }
 
 #characterDetails img {
-  border: 3px solid #ffcc00; /* Gold border around character images */
-  border-radius: 4px; /* Rounded corners for images */
-  margin-top: 10px; /* Space between image and the top content */
+  border: 10px solid #ffcc00; /* Gold border around character images */
+  border-radius: 10px; /* Rounded corners for images */
+  margin-top: 1px; /* Space between image and the top content */
 }
 
 button {
@@ -84,6 +87,7 @@ button {
   border: none; /* Removing default border */
   border-radius: 4px; /* Rounded corners */
   transition: all 0.2s ease; /* Smooth transition for hover effects */
+  /*align to center*/
 }
 
 button:hover {
@@ -97,8 +101,8 @@ button:hover {
 }
 
 .scroll-box {
-  width: 200px; /* Adjust as needed */
-  height: 300px; /* Adjust as needed */
+  width: 1000px; /* Adjust as needed */
+  height: 400px; /* Adjust as needed */
   overflow-y: auto;
   border: 1px solid #ccc;
   padding: 5px;
@@ -113,8 +117,93 @@ button:hover {
 }
 
 #characterImage {
-  max-width: 1000px; /* Adjust as needed */
-  max-height: 1000px; /* Adjust as needed */
+  width: 100%; /* Adjust as needed */
+  height: auto; /* Adjust as needed */
+  object-fit: cover; /* Gold border around the image */
+  border-radius: 4px; /* Rounded corners */
   display: block; /* Show the image, adjust this as needed based on JS logic */
   margin-bottom: 10px; /* Spacing between image and buttons */
+}
+.outcome-btn {
+  font-size: 24px; /* Larger font size for readability */
+  font-weight: bold; /* Bold text for emphasis */
+  margin-top: 20px; /* Space between the buttons and the outcome */
+  margin-left: 55px;
+  text-align: center; /* Center the text */
+}
+.wintoloss-p {
+  font-size: 24px; /* Larger font size for readability */
+  font-weight: bold; /* Bold text for emphasis */
+  margin-top: 20px; /* Space between the buttons and the outcome */
+  margin-left: 55px;
+  text-align: center; /* Center the text */
+}
+.banner {
+  height: 300px; /* Example: reduced height */
+  overflow: hidden; /* Hide parts of the image that overflow the container */
+}
+
+.banner img {
+  width: 100%;
+  height: 150%;
+  object-fit: cover; /* Scale the image nicely to cover the area */
+}
+@media only screen and (max-width: 1200px) {
+  .scroll-box {
+    width: 80%; /* Adjust width for smaller screens */
+  }
+
+  .character-btn,
+  button,
+  .outcome-btn,
+  .wintoloss-p {
+    font-size: calc(1vw + 1rem); /* Adjust font size based on viewport width */
+  }
+
+  #characterImage {
+    width: 80%; /* Adjust image width for consistency */
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  nav ul li {
+    margin-right: 10px; /* Reduce margin between nav items */
+  }
+
+  .content-container {
+    flex-direction: column; /* Stack content vertically on smaller devices */
+  }
+
+  .scroll-box,
+  #characterDetails {
+    width: 100%; /* Use full width for very small screens */
+    margin-top: 20px;
+  }
+
+  .character-btn,
+  button {
+    padding: 15px 30px; /* Adjust padding for a smaller screen */
+    font-size: calc(2vw + 1rem); /* Smaller font size for smaller devices */
+    margin-left: 10px; /* Adjust margin for consistency */
+  }
+
+  .banner img {
+    height: auto; /* Adjust banner height for mobile devices */
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  nav ul li {
+    display: block; /* Stack nav items vertically */
+    margin: 10px 0;
+  }
+
+  .character-btn,
+  button {
+    width: 100%; /* Full width buttons for easier touch */
+    margin: 10px 0; /* Adjust margins for stacked layout */
+    font-size: calc(
+      3vw + 1rem
+    ); /* Increase font size for readability on small screens */
+  }
 }

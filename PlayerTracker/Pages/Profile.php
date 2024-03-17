@@ -36,6 +36,7 @@ function calculateWinLossRatio($characterId, $userId, $conn) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($_SESSION['username']) . "'s Profile"; ?></title>
     <link rel="stylesheet" href="../css/styles.css">
+    <?php include '../Includes/Header.php'; ?>
 
     <script>
     function displayCharacterDetails(characterId) {
@@ -48,11 +49,6 @@ function calculateWinLossRatio($characterId, $userId, $conn) {
     </script>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="../Proc/LogoutProc.php">Logout</a></li>
-        </ul>
-    </nav>
 
     <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
     <p>Your User ID is: <?php echo htmlspecialchars($_SESSION['user_id']); ?></p>
@@ -70,10 +66,11 @@ function calculateWinLossRatio($characterId, $userId, $conn) {
                     echo "<form action='../Proc/RecordMatchProc.php' method='post'>";
                      echo "<input type='hidden' name='characterId' value='" . $characterId . "'>";
                     echo "<input type='hidden' name='userId' value='" . $_SESSION['user_id'] . "'>";
-                    echo "<button type='submit' name='outcome' value='win'>Win</button>";
-                    echo "<button type='submit' name='outcome' value='loss'>Loss</button>";
+                    echo "<button type='submit' name='outcome' class='outcome-btn' value='win'>Win</button>";
+                    echo "<button type='submit' name='outcome' class='outcome-btn' value='loss'>Loss</button>";
+
                     //echo win/loss ratio
-                    echo "<p>" . $winLossInfo . "</p>";
+                    echo "<p class='wintoloss-p'>" . $winLossInfo . "</p>";
                     echo "</form>";
                 }
         } else {

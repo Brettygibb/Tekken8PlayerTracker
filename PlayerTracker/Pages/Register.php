@@ -15,6 +15,7 @@ if(isset($_GET["error"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <?php include '../Includes/Header.php'; ?>
 
 
 </head>

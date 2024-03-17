@@ -5,7 +5,7 @@ function saveUserToDatabase($username, $email, $password) {
     global $conn;
 
     // First, prepare and execute the GetUserByEmail stored procedure
-    $stmt = $conn->prepare("CALL GetUserByEmail(?)");
+    $stmt = $conn->prepare("select * from users where email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -28,7 +28,7 @@ function saveUserToDatabase($username, $email, $password) {
 
     // Now, prepare and execute the RegisterUser stored procedure
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $conn->prepare("CALL RegisterUser(?, ?, ?)");
+    $stmt = $conn->prepare("insert into users (username, email, passwordHash) values (?, ?, ?)");
     if (false === $stmt) {
         // Handle errors in preparing the statement
         return "Error preparing statement: " . htmlspecialchars($conn->error);
@@ -48,7 +48,7 @@ function saveUserToDatabase($username, $email, $password) {
 function loginUser($email, $password) {
     global $conn;
 
-    $stmt = $conn->prepare("CALL LoginUser(?)");
+    $stmt = $conn->prepare("Select * from users where email = ?");
     if (!$stmt) {
         return false; // Preparation of statement failed
     }
